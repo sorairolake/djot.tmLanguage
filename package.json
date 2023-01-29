@@ -13,6 +13,7 @@
   "bugs": {
     "url": "https://github.com/sorairolake/djot.tmLanguage/issues"
   },
+  "type": "module",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -21,7 +22,7 @@
     "build": "node build"
   },
   "devDependencies": {
-    "js-yaml": "^3.14.1",
+    "js-yaml": "^4.1.0",
     "plist": "^3.0.6"
   }
 }
