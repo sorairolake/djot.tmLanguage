@@ -4560,7 +4560,7 @@
          | ((?&lt;url&gt;(?&gt;[^\s()]+)|\(\g&lt;url&gt;*\))*)
       )
       [ \t]*
-    # The title  
+    # The title
     (?:
         ((\()[^()]*(\)))    # Match title in parens…
       | ((")[^"]*("))    # or in double quotes…

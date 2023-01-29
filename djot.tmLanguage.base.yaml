@@ -446,7 +446,7 @@ repository:
       # Normal link destination
       '10': {name: markup.underline.link.djot}
 
-      # Title 
+      # Title
       '12': {name: string.other.link.description.title.djot}
       '13': {name: punctuation.definition.string.begin.djot}
       '14': {name: punctuation.definition.string.end.djot}
@@ -469,7 +469,7 @@ repository:
                | ((?<url>(?>[^\s()]+)|\(\g<url>*\))*)
             )
             [ \t]*
-          # The title  
+          # The title
           (?:
               ((\()[^()]*(\)))    # Match title in parens…
             | ((")[^"]*("))    # or in double quotes…
