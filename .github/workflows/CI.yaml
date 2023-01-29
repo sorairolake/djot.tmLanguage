@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+  schedule:
+      - cron: '0 0 * * 0'
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: npm ci
+    - name: Check the grammar is up-to-date
+      run: |
+        npm run build
+        git diff --exit-code
+
+  fmt:
+    name: Format
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: |
+        npm ci
+        npx prettier -v
+    - name: Check code formatted
+      run: npx prettier -c ./build.js
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: |
+        npm ci
+        npx eslint -v
+    - name: Check no lint warnings
+      run: npx eslint ./build.js
+
+  type-checking:
+    name: Type checking
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: |
+        npm ci
+        npx tsc -v
+    - name: Type checking JavaScript files
+      run: npx tsc --allowJs --noEmit --esModuleInterop ./build.js
