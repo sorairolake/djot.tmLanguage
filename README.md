@@ -20,6 +20,12 @@ npm install
 npm run build
 ```
 
+## License
+
+The code and documentation are distributed under the terms of the _MIT License_.
+
+See [LICENSE](LICENSE) for more details.
+
 [ci-badge]: https://github.com/sorairolake/djot.tmLanguage/workflows/CI/badge.svg
 [ci-url]: https://github.com/sorairolake/djot.tmLanguage/actions?query=workflow%3ACI
 [djot-url]: https://djot.net/

@@ -1,5 +1,12 @@
 // @ts-check
 
+//
+// SPDX-License-Identifier: MIT
+//
+// Copyright (C) 2018 Microsoft
+// Copyright (C) 2023 Shun Sakai
+//
+
 import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";

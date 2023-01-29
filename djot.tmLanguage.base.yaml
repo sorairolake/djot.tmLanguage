@@ -1,3 +1,10 @@
+#
+# SPDX-License-Identifier: MIT
+#
+# Copyright (C) 2018 Microsoft
+# Copyright (C) 2023 Shun Sakai
+#
+
 fileTypes: [dj]
 keyEquivalent: ^~M
 name: Djot
