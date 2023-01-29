@@ -552,4 +552,4 @@ repository:
     match: (?<!\\)(~{2,})((?:[^~]|(?!(?<![~\\])\1(?!~))~)*+)(\1)
     name: markup.strikethrough.djot
 scopeName: text.html.djot
-uuid: 0A1D9874-B448-11D9-BD50-000D93B6E43C
+uuid: 901ba7df-dbe7-4613-a7c1-2eb1f3c62866
