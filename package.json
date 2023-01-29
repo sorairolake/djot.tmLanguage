@@ -1,42 +1,27 @@
 {
-  "name": "vscode-markdown-tm-grammar",
   "private": true,
+  "name": "djot.tmLanguage",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "node build",
-    "test": "node ./test/runTest.js"
-  },
-  "activationEvents": [],
-  "engines": {
-    "vscode": "^1.55.0"
-  },
+  "description": "TextMate grammar files for djot",
+  "license": "MIT",
+  "author": "Shun Sakai <sorairolake@protonmail.ch>",
+  "homepage": "https://github.com/sorairolake/djot.tmLanguage#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mjbvz/vscode-markdown-tm-grammar.git"
+    "url": "git+https://github.com/sorairolake/djot.tmLanguage.git"
   },
-  "keywords": [],
-  "author": "Microsoft",
-  "publisher": "Microsoft",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mjbvz/vscode-markdown-tm-grammar/issues"
+    "url": "https://github.com/sorairolake/djot.tmLanguage/issues"
   },
-  "contributes": {
-    "grammars": [
-      {
-        "language": "markdown",
-        "scopeName": "text.html.markdown",
-        "path": "./syntaxes/markdown.tmLanguage"
-      }
-    ]
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   },
-  "homepage": "https://github.com/mjbvz/vscode-markdown-tm-grammar#readme",
+  "scripts": {
+    "build": "node build"
+  },
   "devDependencies": {
-    "js-yaml": "^3.13.1",
-    "mocha": "^10.0.0",
-    "plist": "^3.0.4",
-    "vscode-test": "^1.6.1"
+    "js-yaml": "^3.14.1",
+    "plist": "^3.0.6"
   }
 }

@@ -1,30 +1,26 @@
-# VS Code Markdown Grammar
+# Djot.tmLanguage
 
-[![Build Status](https://dev.azure.com/monacotools/Monaco/_apis/build/status/Extensions/microsoft.vscode-markdown-tm-grammar?branchName=main)](https://dev.azure.com/monacotools/Monaco/_build/latest?definitionId=203&branchName=main)
+[![CI][ci-badge]][ci-url]
 
-VS Code markdown extension's TextMate grammar.
+TextMate grammar files for [djot][djot-url].
+
+This is a fork of [VS Code Markdown Grammar][based-repo-url].
 
 ## Contributing
 
-The main grammar is stored in `syntaxes/markdown.tmLanguage`. This file is generated from `markdown.tmLanguage.base.yaml`:
+The main grammar is stored in `syntax/djot.tmLanguage`.
+This file is generated from `djot.tmLanguage.base.yaml`.
 
 ### Building
 
 To generate the main grammar:
 
-```console
+```sh
 npm install
 npm run build
 ```
 
-### Testing
-
-To run the grammar tests:
-
-```console
-npm run test
-```
-
-The test cases are stored as markdown files under `test/colorize-fixtures`. Grammar test results are stored under `test/colorize-results`, which are automatically generated from the fixtures.
-
-To test the grammar in VS Code, select the `Launch Extension` configuration in the VS Code debugger and run.
+[ci-badge]: https://github.com/sorairolake/djot.tmLanguage/workflows/CI/badge.svg
+[ci-url]: https://github.com/sorairolake/djot.tmLanguage/actions?query=workflow%3ACI
+[djot-url]: https://djot.net/
+[based-repo-url]: https://github.com/microsoft/vscode-markdown-tm-grammar

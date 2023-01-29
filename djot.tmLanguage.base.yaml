@@ -1,6 +1,6 @@
-fileTypes: [md, mdown, markdown, markdn]
+fileTypes: [dj]
 keyEquivalent: ^~M
-name: Markdown
+name: Djot
 patterns:
 - {include: '#frontMatter'}
 - {include: '#block'}
@@ -19,8 +19,8 @@ repository:
   blockquote:
     begin: (^|\G)[ ]{0,3}(>) ?
     captures:
-      '2': {name: punctuation.definition.quote.begin.markdown}
-    name: markup.quote.markdown
+      '2': {name: punctuation.definition.quote.begin.djot}
+    name: markup.quote.djot
     patterns:
     - {include: '#block'}
     while: (^|\G)\s*(>) ?
@@ -32,72 +32,72 @@ repository:
   fenced_code_block_unknown:
     begin: (^|\G)(\s*)(`{3,}|~{3,})\s*(?=([^`]*)?$)
     beginCaptures:
-      '3': {name: punctuation.definition.markdown}
+      '3': {name: punctuation.definition.djot}
       '4': {name: fenced_code.block.language}
     end: (^|\G)(\2|\s{0,3})(\3)\s*$
     endCaptures:
-      '3': {name: punctuation.definition.markdown}
-    name: markup.fenced_code.block.markdown
+      '3': {name: punctuation.definition.djot}
+    name: markup.fenced_code.block.djot
   heading:
     match: (?:^|\G)[ ]{0,3}(#{1,6}\s+(.*?)(\s+#{1,6})?\s*)$
     captures:
       '1':
         patterns:
         - match: (#{6})\s+(.*?)(?:\s+(#+))?\s*$
-          name: 'heading.6.markdown'
+          name: 'heading.6.djot'
           captures:
-            '1': {name: punctuation.definition.heading.markdown}
+            '1': {name: punctuation.definition.heading.djot}
             '2':
-              name: entity.name.section.markdown
+              name: entity.name.section.djot
               patterns: [ {include: '#inline'}, {include: text.html.derivative} ]
-            '3': {name: punctuation.definition.heading.markdown}
+            '3': {name: punctuation.definition.heading.djot}
         - match: (#{5})\s+(.*?)(?:\s+(#+))?\s*$
-          name: 'heading.5.markdown'
+          name: 'heading.5.djot'
           captures:
-            '1': {name: punctuation.definition.heading.markdown}
+            '1': {name: punctuation.definition.heading.djot}
             '2':
-              name: entity.name.section.markdown
+              name: entity.name.section.djot
               patterns: [ {include: '#inline'}, {include: text.html.derivative} ]
-            '3': {name: punctuation.definition.heading.markdown}
+            '3': {name: punctuation.definition.heading.djot}
         - match: (#{4})\s+(.*?)(?:\s+(#+))?\s*$
-          name: 'heading.4.markdown'
+          name: 'heading.4.djot'
           captures:
-            '1': {name: punctuation.definition.heading.markdown}
+            '1': {name: punctuation.definition.heading.djot}
             '2':
-              name: entity.name.section.markdown
+              name: entity.name.section.djot
               patterns: [ {include: '#inline'}, {include: text.html.derivative} ]
-            '3': {name: punctuation.definition.heading.markdown}
+            '3': {name: punctuation.definition.heading.djot}
         - match: (#{3})\s+(.*?)(?:\s+(#+))?\s*$
-          name: 'heading.3.markdown'
+          name: 'heading.3.djot'
           captures:
-            '1': {name: punctuation.definition.heading.markdown}
+            '1': {name: punctuation.definition.heading.djot}
             '2':
-              name: entity.name.section.markdown
+              name: entity.name.section.djot
               patterns: [ {include: '#inline'}, {include: text.html.derivative} ]
-            '3': {name: punctuation.definition.heading.markdown}
+            '3': {name: punctuation.definition.heading.djot}
         - match: (#{2})\s+(.*?)(?:\s+(#+))?\s*$
-          name: 'heading.2.markdown'
+          name: 'heading.2.djot'
           captures:
-            '1': {name: punctuation.definition.heading.markdown}
+            '1': {name: punctuation.definition.heading.djot}
             '2':
-              name: entity.name.section.markdown
+              name: entity.name.section.djot
               patterns: [ {include: '#inline'}, {include: text.html.derivative} ]
-            '3': {name: punctuation.definition.heading.markdown}
+            '3': {name: punctuation.definition.heading.djot}
         - match: (#{1})\s+(.*?)(?:\s+(#+))?\s*$
-          name: 'heading.1.markdown'
+          name: 'heading.1.djot'
           captures:
-            '1': {name: punctuation.definition.heading.markdown}
+            '1': {name: punctuation.definition.heading.djot}
             '2':
-              name: entity.name.section.markdown
+              name: entity.name.section.djot
               patterns: [ {include: '#inline'}, {include: text.html.derivative} ]
-            '3': {name: punctuation.definition.heading.markdown}
-    name: markup.heading.markdown
+            '3': {name: punctuation.definition.heading.djot}
+    name: markup.heading.djot
     patterns:
     - {include: '#inline'}
   heading-setext:
     patterns:
-    - {match: '^(={3,})(?=[ \t]*$\n?)', name: markup.heading.setext.1.markdown}
-    - {match: '^(-{3,})(?=[ \t]*$\n?)', name: markup.heading.setext.2.markdown}
+    - {match: '^(={3,})(?=[ \t]*$\n?)', name: markup.heading.setext.1.djot}
+    - {match: '^(-{3,})(?=[ \t]*$\n?)', name: markup.heading.setext.2.djot}
   html:
     patterns:
     - begin: (^|\G)\s*(<!--)
@@ -129,23 +129,23 @@ repository:
       while: ^(?!\s*$)
   link-def:
     captures:
-      '1': {name: punctuation.definition.constant.markdown}
-      '2': {name: constant.other.reference.link.markdown}
-      '3': {name: punctuation.definition.constant.markdown}
-      '4': {name: punctuation.separator.key-value.markdown}
-      '5': {name: punctuation.definition.link.markdown}
-      '6': {name: markup.underline.link.markdown}
-      '7': {name: punctuation.definition.link.markdown}
-      '8': {name: markup.underline.link.markdown}
-      '9': {name: string.other.link.description.title.markdown}
-      '10': {name: punctuation.definition.string.begin.markdown}
-      '11': {name: punctuation.definition.string.end.markdown}
-      '12': {name: string.other.link.description.title.markdown}
-      '13': {name: punctuation.definition.string.begin.markdown}
-      '14': {name: punctuation.definition.string.end.markdown}
-      '15': {name: string.other.link.description.title.markdown}
-      '16': {name: punctuation.definition.string.begin.markdown}
-      '17': {name: punctuation.definition.string.end.markdown}
+      '1': {name: punctuation.definition.constant.djot}
+      '2': {name: constant.other.reference.link.djot}
+      '3': {name: punctuation.definition.constant.djot}
+      '4': {name: punctuation.separator.key-value.djot}
+      '5': {name: punctuation.definition.link.djot}
+      '6': {name: markup.underline.link.djot}
+      '7': {name: punctuation.definition.link.djot}
+      '8': {name: markup.underline.link.djot}
+      '9': {name: string.other.link.description.title.djot}
+      '10': {name: punctuation.definition.string.begin.djot}
+      '11': {name: punctuation.definition.string.end.djot}
+      '12': {name: string.other.link.description.title.djot}
+      '13': {name: punctuation.definition.string.begin.djot}
+      '14': {name: punctuation.definition.string.end.djot}
+      '15': {name: string.other.link.description.title.djot}
+      '16': {name: punctuation.definition.string.begin.djot}
+      '17': {name: punctuation.definition.string.end.djot}
     match: >
       (?x)
         \s*            # Leading whitespace
@@ -160,10 +160,10 @@ repository:
         )?            # Title is optional
         \s*            # Optional whitespace
         $
-    name: meta.link.reference.def.markdown
+    name: meta.link.reference.def.djot
   list_paragraph:
     begin: (^|\G)(?=\S)(?![*+->]\s|[0-9]+\.\s)
-    name: meta.paragraph.markdown
+    name: meta.paragraph.djot
     patterns:
     - {include: '#inline'}
     - {include: text.html.derivative}
@@ -174,32 +174,32 @@ repository:
     patterns:
     - begin: (^|\G)([ ]{0,3})([*+-])([ \t])
       beginCaptures:
-        '3': {name: punctuation.definition.list.begin.markdown}
+        '3': {name: punctuation.definition.list.begin.djot}
       comment: Currently does not support un-indented second lines.
-      name: markup.list.unnumbered.markdown
+      name: markup.list.unnumbered.djot
       patterns:
       - {include: '#block'}
       - {include: '#list_paragraph'}
       while: ((^|\G)([ ]{2,4}|\t))|(^[ \t]*$)
     - begin: (^|\G)([ ]{0,3})([0-9]+\.)([ \t])
       beginCaptures:
-        '3': {name: punctuation.definition.list.begin.markdown}
-      name: markup.list.numbered.markdown
+        '3': {name: punctuation.definition.list.begin.djot}
+      name: markup.list.numbered.djot
       patterns:
       - {include: '#block'}
       - {include: '#list_paragraph'}
       while: ((^|\G)([ ]{2,4}|\t))|(^[ \t]*$)
   paragraph:
     begin: (^|\G)[ ]{0,3}(?=\S)
-    name: meta.paragraph.markdown
+    name: meta.paragraph.djot
     patterns:
     - {include: '#inline'}
     - {include: text.html.derivative}
     - {include: '#heading-setext'}
     while: (^|\G)((?=\s*[-=]{3,}\s*$)|[ ]{4,}(?=\S))
-  raw_block: {begin: '(^|\G)([ ]{4}|\t)', name: markup.raw.block.markdown, while: '(^|\G)([
+  raw_block: {begin: '(^|\G)([ ]{4}|\t)', name: markup.raw.block.djot, while: '(^|\G)([
       ]{4}|\t)'}
-  separator: {match: '(^|\G)[ ]{0,3}([\*\-\_])([ ]{0,2}\2){2,}[ \t]*$\n?', name: meta.separator.markdown}
+  separator: {match: '(^|\G)[ ]{0,3}([\*\-\_])([ ]{0,2}\2){2,}[ \t]*$\n?', name: meta.separator.djot}
   frontMatter:
     begin: \A-{3}\s*$
     contentName: meta.embedded.block.frontmatter
@@ -226,7 +226,7 @@ repository:
   ampersand:
     comment: "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid."
     match: '&(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)'
-    name: meta.other.valid-ampersand.markdown
+    name: meta.other.valid-ampersand.djot
   bold:
     begin: >
       (?x)
@@ -270,9 +270,9 @@ repository:
         (?<=\S)(?=__\b|\*\*)\k<open>                # Close
       )
     captures:
-      '1': {name: punctuation.definition.bold.markdown}
+      '1': {name: punctuation.definition.bold.djot}
     end: (?<=\S)(\1)
-    name: markup.bold.markdown
+    name: markup.bold.djot
     patterns:
     - applyEndPatternLast: 1
       begin: (?=<[^>]*?>)
@@ -297,27 +297,27 @@ repository:
   bracket:
     comment: "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid."
     match: '<(?![a-zA-Z/?\$!])'
-    name: meta.other.valid-bracket.markdown
-  escape: {match: '\\[-`*_#+.!(){}\[\]\\>]', name: constant.character.escape.markdown}
+    name: meta.other.valid-bracket.djot
+  escape: {match: '\\[-`*_#+.!(){}\[\]\\>]', name: constant.character.escape.djot}
   image-inline:
     captures:
-      '1': {name: punctuation.definition.link.description.begin.markdown}
-      '2': {name: string.other.link.description.markdown}
-      '4': {name: punctuation.definition.link.description.end.markdown}
-      '5': {name: punctuation.definition.metadata.markdown}
-      '6': {name: punctuation.definition.link.markdown}
-      '7': {name: markup.underline.link.image.markdown}
-      '8': {name: punctuation.definition.link.markdown}
-      '9': {name: string.other.link.description.title.markdown}
-      '10': {name: punctuation.definition.string.markdown}
-      '11': {name: punctuation.definition.string.markdown}
-      '12': {name: string.other.link.description.title.markdown}
-      '13': {name: punctuation.definition.string.markdown}
-      '14': {name: punctuation.definition.string.markdown}
-      '15': {name: string.other.link.description.title.markdown}
-      '16': {name: punctuation.definition.string.markdown}
-      '17': {name: punctuation.definition.string.markdown}
-      '18': {name: punctuation.definition.metadata.markdown}
+      '1': {name: punctuation.definition.link.description.begin.djot}
+      '2': {name: string.other.link.description.djot}
+      '4': {name: punctuation.definition.link.description.end.djot}
+      '5': {name: punctuation.definition.metadata.djot}
+      '6': {name: punctuation.definition.link.djot}
+      '7': {name: markup.underline.link.image.djot}
+      '8': {name: punctuation.definition.link.djot}
+      '9': {name: string.other.link.description.title.djot}
+      '10': {name: punctuation.definition.string.djot}
+      '11': {name: punctuation.definition.string.djot}
+      '12': {name: string.other.link.description.title.djot}
+      '13': {name: punctuation.definition.string.djot}
+      '14': {name: punctuation.definition.string.djot}
+      '15': {name: string.other.link.description.title.djot}
+      '16': {name: punctuation.definition.string.djot}
+      '17': {name: punctuation.definition.string.djot}
+      '18': {name: punctuation.definition.metadata.djot}
     match: >
       (?x)
         (\!\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*+\])*+)(\])
@@ -332,17 +332,17 @@ repository:
           )?            # Title is optional
           \s*            # Optional whitespace
         (\))
-    name: meta.image.inline.markdown
+    name: meta.image.inline.djot
   image-ref:
     captures:
-      '1': {name: punctuation.definition.link.description.begin.markdown}
-      '2': {name: string.other.link.description.markdown}
-      '4': {name: punctuation.definition.link.description.end.markdown}
-      '5': {name: punctuation.definition.constant.markdown}
-      '6': {name: constant.other.reference.link.markdown}
-      '7': {name: punctuation.definition.constant.markdown}
+      '1': {name: punctuation.definition.link.description.begin.djot}
+      '2': {name: string.other.link.description.djot}
+      '4': {name: punctuation.definition.link.description.end.djot}
+      '5': {name: punctuation.definition.constant.djot}
+      '6': {name: constant.other.reference.link.djot}
+      '7': {name: punctuation.definition.constant.djot}
     match: (\!\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*+\])*+)(\])[ ]?(\[)(.*?)(\])
-    name: meta.image.reference.markdown
+    name: meta.image.reference.djot
   italic:
     begin: >
       (?x)
@@ -387,9 +387,9 @@ repository:
           (?<=\S)(?=_\b|\*)\k<open>                # Close
         )
     captures:
-      '1': {name: punctuation.definition.italic.markdown}
+      '1': {name: punctuation.definition.italic.djot}
     end: (?<=\S)(\1)((?!\1)|(?=\1\1))
-    name: markup.italic.markdown
+    name: markup.italic.djot
     patterns:
     - applyEndPatternLast: 1
       begin: (?=<[^>]*?>)
@@ -412,51 +412,51 @@ repository:
     - {include: '#strikethrough'}
   link-email:
     captures:
-      '1': {name: punctuation.definition.link.markdown}
-      '2': {name: markup.underline.link.markdown}
-      '4': {name: punctuation.definition.link.markdown}
+      '1': {name: punctuation.definition.link.djot}
+      '2': {name: markup.underline.link.djot}
+      '4': {name: punctuation.definition.link.djot}
     match: (<)((?:mailto:)?[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)(>)
-    name: meta.link.email.lt-gt.markdown
+    name: meta.link.email.lt-gt.djot
   link-inet:
     captures:
-      '1': {name: punctuation.definition.link.markdown}
-      '2': {name: markup.underline.link.markdown}
-      '3': {name: punctuation.definition.link.markdown}
+      '1': {name: punctuation.definition.link.djot}
+      '2': {name: markup.underline.link.djot}
+      '3': {name: punctuation.definition.link.djot}
     match: (<)((?:https?|ftp)://.*?)(>)
-    name: meta.link.inet.markdown
+    name: meta.link.inet.djot
   link-inline:
     captures:
-      '1': {name: punctuation.definition.link.title.begin.markdown}
+      '1': {name: punctuation.definition.link.title.begin.djot}
       '2':
-        name: string.other.link.title.markdown
+        name: string.other.link.title.djot
         patterns:
         - {include: '#raw'}
         - {include: '#bold'}
         - {include: '#italic'}
         - {include: '#strikethrough'}
         - {include: '#image-inline'}
-      '4': {name: punctuation.definition.link.title.end.markdown}
-      '5': {name: punctuation.definition.metadata.markdown}
+      '4': {name: punctuation.definition.link.title.end.djot}
+      '5': {name: punctuation.definition.metadata.djot}
 
       # Angle bracket link destination
-      '7': {name: punctuation.definition.link.markdown}
-      '8': {name: markup.underline.link.markdown}
-      '9': {name: punctuation.definition.link.markdown}
+      '7': {name: punctuation.definition.link.djot}
+      '8': {name: markup.underline.link.djot}
+      '9': {name: punctuation.definition.link.djot}
 
       # Normal link destination
-      '10': {name: markup.underline.link.markdown}
+      '10': {name: markup.underline.link.djot}
 
       # Title 
-      '12': {name: string.other.link.description.title.markdown}
-      '13': {name: punctuation.definition.string.begin.markdown}
-      '14': {name: punctuation.definition.string.end.markdown}
-      '15': {name: string.other.link.description.title.markdown}
-      '16': {name: punctuation.definition.string.begin.markdown}
-      '17': {name: punctuation.definition.string.end.markdown}
-      '18': {name: string.other.link.description.title.markdown}
-      '19': {name: punctuation.definition.string.begin.markdown}
-      '20': {name: punctuation.definition.string.end.markdown}
-      '21': {name: punctuation.definition.metadata.markdown}
+      '12': {name: string.other.link.description.title.djot}
+      '13': {name: punctuation.definition.string.begin.djot}
+      '14': {name: punctuation.definition.string.end.djot}
+      '15': {name: string.other.link.description.title.djot}
+      '16': {name: punctuation.definition.string.begin.djot}
+      '17': {name: punctuation.definition.string.end.djot}
+      '18': {name: string.other.link.description.title.djot}
+      '19': {name: punctuation.definition.string.begin.djot}
+      '20': {name: punctuation.definition.string.end.djot}
+      '21': {name: punctuation.definition.metadata.djot}
     match: >
       (?x)
         (\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*+\])*+)(\])
@@ -477,49 +477,49 @@ repository:
           )?            # Title is optional
           \s*            # Optional whitespace
         (\))
-    name: meta.link.inline.markdown
+    name: meta.link.inline.djot
   link-ref:
     captures:
-      '1': {name: punctuation.definition.link.title.begin.markdown}
+      '1': {name: punctuation.definition.link.title.begin.djot}
       '2':
-        name: string.other.link.title.markdown
+        name: string.other.link.title.djot
         patterns:
         - {include: '#raw'}
         - {include: '#bold'}
         - {include: '#italic'}
         - {include: '#strikethrough'}
         - {include: '#image-inline'}
-      '4': {name: punctuation.definition.link.title.end.markdown}
-      '5': {name: punctuation.definition.constant.begin.markdown}
-      '6': {name: constant.other.reference.link.markdown}
-      '7': {name: punctuation.definition.constant.end.markdown}
+      '4': {name: punctuation.definition.link.title.end.djot}
+      '5': {name: punctuation.definition.constant.begin.djot}
+      '6': {name: constant.other.reference.link.djot}
+      '7': {name: punctuation.definition.constant.end.djot}
     match: (?<![\]\\])(\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*+\])*+)(\])(\[)([^\]]*+)(\])
-    name: meta.link.reference.markdown
+    name: meta.link.reference.djot
   link-ref-literal:
     captures:
-      '1': {name: punctuation.definition.link.title.begin.markdown}
-      '2': {name: string.other.link.title.markdown}
-      '4': {name: punctuation.definition.link.title.end.markdown}
-      '5': {name: punctuation.definition.constant.begin.markdown}
-      '6': {name: punctuation.definition.constant.end.markdown}
+      '1': {name: punctuation.definition.link.title.begin.djot}
+      '2': {name: string.other.link.title.djot}
+      '4': {name: punctuation.definition.link.title.end.djot}
+      '5': {name: punctuation.definition.constant.begin.djot}
+      '6': {name: punctuation.definition.constant.end.djot}
     match: (?<![\]\\])(\[)((?<square>[^\[\]\\]|\\.|\[\g<square>*+\])*+)(\])[ ]?(\[)(\])
-    name: meta.link.reference.literal.markdown
+    name: meta.link.reference.literal.djot
   link-ref-shortcut:
     captures:
-      '1': {name: punctuation.definition.link.title.begin.markdown}
-      '2': {name: string.other.link.title.markdown}
-      '3': {name: punctuation.definition.link.title.end.markdown}
+      '1': {name: punctuation.definition.link.title.begin.djot}
+      '2': {name: string.other.link.title.djot}
+      '3': {name: punctuation.definition.link.title.end.djot}
     match: (?<![\]\\])(\[)(\S+?)(\])
-    name: meta.link.reference.markdown
+    name: meta.link.reference.djot
   raw:
     captures:
-      '1': {name: punctuation.definition.raw.markdown}
-      '3': {name: punctuation.definition.raw.markdown}
+      '1': {name: punctuation.definition.raw.djot}
+      '3': {name: punctuation.definition.raw.djot}
     match: (`+)((?:[^`]|(?!(?<!`)\1(?!`))`)*+)(\1)
-    name: markup.inline.raw.string.markdown
+    name: markup.inline.raw.string.djot
   strikethrough:
     captures:
-      '1': {name: punctuation.definition.strikethrough.markdown}
+      '1': {name: punctuation.definition.strikethrough.djot}
       '2':
         patterns:
         - applyEndPatternLast: 1
@@ -541,8 +541,8 @@ repository:
         - {include: '#link-ref-literal'}
         - {include: '#link-ref'}
         - {include: '#link-ref-shortcut'}
-      '3': {name: punctuation.definition.strikethrough.markdown}
+      '3': {name: punctuation.definition.strikethrough.djot}
     match: (?<!\\)(~{2,})((?:[^~]|(?!(?<![~\\])\1(?!~))~)*+)(\1)
-    name: markup.strikethrough.markdown
-scopeName: text.html.markdown
+    name: markup.strikethrough.djot
+scopeName: text.html.djot
 uuid: 0A1D9874-B448-11D9-BD50-000D93B6E43C

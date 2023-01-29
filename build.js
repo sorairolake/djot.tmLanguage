@@ -87,15 +87,15 @@ const fencedCodeBlockDefinition = (name, identifiers, sourceScope, language, add
   begin:
     (^|\\G)(\\s*)(\`{3,}|~{3,})\\s*(?i:(${identifiers.join('|')})((\\s+|:|,|\\{|\\?)[^\`]*)?$)
   name:
-    markup.fenced_code.block.markdown
+    markup.fenced_code.block.djot
   end:
     (^|\\G)(\\2|\\s{0,3})(\\3)\\s*$
   beginCaptures:
-    '3': {name: 'punctuation.definition.markdown'}
-    '4': {name: 'fenced_code.block.language.markdown'}
-    '5': {name: 'fenced_code.block.language.attributes.markdown'}
+    '3': {name: 'punctuation.definition.djot'}
+    '4': {name: 'fenced_code.block.language.djot'}
+    '5': {name: 'fenced_code.block.language.attributes.djot'}
   endCaptures:
-    '3': {name: 'punctuation.definition.markdown'}
+    '3': {name: 'punctuation.definition.djot'}
   patterns:
     - begin: (^|\\G)(\\s*)(.*)
       while: (^|\\G)(?!\\s*([\`~]{3,})\\s*$)
@@ -126,13 +126,13 @@ const fencedCodeBlockIncludes = () =>
 
 
 const buildGrammar = () => {
-	let text = fs.readFileSync(path.join(__dirname, 'markdown.tmLanguage.base.yaml'), "utf8");
+	let text = fs.readFileSync(path.join(__dirname, 'djot.tmLanguage.base.yaml'), "utf8");
 	text = text.replace(/\s*\{\{languageIncludes\}\}/, '\n' + indent(2, fencedCodeBlockIncludes()))
 	text = text.replace(/\s*\{\{languageDefinitions\}\}/, '\n' + indent(1, fencedCodeBlockDefinitions()))
 
 	const grammar = yaml.safeLoad(text);
 	const out = plist.build(grammar);
-	fs.writeFileSync(path.join(__dirname, 'syntaxes', 'markdown.tmLanguage'), out);
+	fs.writeFileSync(path.join(__dirname, 'syntax', 'djot.tmLanguage'), out);
 };
 
 buildGrammar();
