@@ -5,6 +5,7 @@
 # Copyright (C) 2023 Shun Sakai
 #
 
+---
 fileTypes: [dj]
 keyEquivalent: ^~M
 name: Djot
