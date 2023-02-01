@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "eslint": "^8.33.0",
     "js-yaml": "^4.1.0",
     "plist": "^3.0.6",
