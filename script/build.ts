@@ -482,7 +482,7 @@ const buildGrammar = (): void => {
   );
 
   const grammar = yaml.load(text) as plist.PlistValue;
-  const out = plist.build(grammar);
+  const out = plist.build(grammar) + "\n";
   fs.writeFileSync(path.join("syntax", "djot.tmLanguage"), out);
 };
 
