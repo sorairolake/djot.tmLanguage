@@ -1,5 +1,3 @@
-// @ts-check
-
 //
 // SPDX-License-Identifier: MIT
 //
@@ -12,49 +10,62 @@ import path from "node:path";
 import yaml from "js-yaml";
 import plist from "plist";
 
-const languages = [
+interface Language {
+  name: string;
+  language?: string;
+  identifiers: string[];
+  source: string[];
+  additionalContentName?: string[];
+}
+
+const languages: Language[] = [
   {
     name: "css",
     language: "css",
     identifiers: ["css", "css.erb"],
-    source: "source.css",
+    source: ["source.css"],
   },
   {
     name: "basic",
     language: "html",
     identifiers: ["html", "htm", "shtml", "xhtml", "inc", "tmpl", "tpl"],
-    source: "text.html.basic",
+    source: ["text.html.basic"],
   },
   {
     name: "ini",
     language: "ini",
     identifiers: ["ini", "conf"],
-    source: "source.ini",
+    source: ["source.ini"],
   },
   {
     name: "java",
     language: "java",
     identifiers: ["java", "bsh"],
-    source: "source.java",
+    source: ["source.java"],
   },
-  { name: "lua", language: "lua", identifiers: ["lua"], source: "source.lua" },
+  {
+    name: "lua",
+    language: "lua",
+    identifiers: ["lua"],
+    source: ["source.lua"],
+  },
   {
     name: "makefile",
     language: "makefile",
     identifiers: ["Makefile", "makefile", "GNUmakefile", "OCamlMakefile"],
-    source: "source.makefile",
+    source: ["source.makefile"],
   },
   {
     name: "perl",
     language: "perl",
     identifiers: ["perl", "pl", "pm", "pod", "t", "PL", "psgi", "vcl"],
-    source: "source.perl",
+    source: ["source.perl"],
   },
   {
     name: "r",
     language: "r",
     identifiers: ["R", "r", "s", "S", "Rprofile", "\\{\\.r.+?\\}"],
-    source: "source.r",
+    source: ["source.r"],
   },
   {
     name: "ruby",
@@ -85,7 +96,7 @@ const languages = [
       "Thorfile",
       "Puppetfile",
     ],
-    source: "source.ruby",
+    source: ["source.ruby"],
   },
   // Left to its own devices, the PHP grammar will match HTML as a combination
   // of operators and constants. Therefore, HTML must take precedence over PHP
@@ -100,13 +111,13 @@ const languages = [
     name: "sql",
     language: "sql",
     identifiers: ["sql", "ddl", "dml"],
-    source: "source.sql",
+    source: ["source.sql"],
   },
   {
     name: "vs_net",
     language: "vs_net",
     identifiers: ["vb"],
-    source: "source.asp.vb.net",
+    source: ["source.asp.vb.net"],
   },
   {
     name: "xml",
@@ -122,85 +133,85 @@ const languages = [
       "rss",
       "opml",
     ],
-    source: "text.xml",
+    source: ["text.xml"],
   },
   {
     name: "xsl",
     language: "xsl",
     identifiers: ["xsl", "xslt"],
-    source: "text.xml.xsl",
+    source: ["text.xml.xsl"],
   },
   {
     name: "yaml",
     language: "yaml",
     identifiers: ["yaml", "yml"],
-    source: "source.yaml",
+    source: ["source.yaml"],
   },
   {
     name: "dosbatch",
     language: "dosbatch",
     identifiers: ["bat", "batch"],
-    source: "source.batchfile",
+    source: ["source.batchfile"],
   },
   {
     name: "clojure",
     language: "clojure",
     identifiers: ["clj", "cljs", "clojure"],
-    source: "source.clojure",
+    source: ["source.clojure"],
   },
   {
     name: "coffee",
     language: "coffee",
     identifiers: ["coffee", "Cakefile", "coffee.erb"],
-    source: "source.coffee",
+    source: ["source.coffee"],
   },
-  { name: "c", language: "c", identifiers: ["c", "h"], source: "source.c" },
+  { name: "c", language: "c", identifiers: ["c", "h"], source: ["source.c"] },
   {
     name: "cpp",
     language: "cpp",
     identifiers: ["cpp", "c\\+\\+", "cxx"],
-    source: "source.cpp",
+    source: ["source.cpp"],
     additionalContentName: ["source.cpp"],
   },
   {
     name: "diff",
     language: "diff",
     identifiers: ["patch", "diff", "rej"],
-    source: "source.diff",
+    source: ["source.diff"],
   },
   {
     name: "dockerfile",
     language: "dockerfile",
     identifiers: ["dockerfile", "Dockerfile"],
-    source: "source.dockerfile",
+    source: ["source.dockerfile"],
   },
   {
     name: "git_commit",
     identifiers: ["COMMIT_EDITMSG", "MERGE_MSG"],
-    source: "text.git-commit",
+    source: ["text.git-commit"],
   },
   {
     name: "git_rebase",
     identifiers: ["git-rebase-todo"],
-    source: "text.git-rebase",
+    source: ["text.git-rebase"],
   },
   {
     name: "go",
     language: "go",
     identifiers: ["go", "golang"],
-    source: "source.go",
+    source: ["source.go"],
   },
   {
     name: "groovy",
     language: "groovy",
     identifiers: ["groovy", "gvy"],
-    source: "source.groovy",
+    source: ["source.groovy"],
   },
   {
     name: "pug",
     language: "pug",
     identifiers: ["jade", "pug"],
-    source: "text.pug",
+    source: ["text.pug"],
   },
 
   {
@@ -216,9 +227,9 @@ const languages = [
       "dataviewjs",
       "\\{\\.js.+?\\}",
     ],
-    source: "source.js",
+    source: ["source.js"],
   },
-  { name: "js_regexp", identifiers: ["regexp"], source: "source.js.regexp" },
+  { name: "js_regexp", identifiers: ["regexp"], source: ["source.js.regexp"] },
   {
     name: "json",
     language: "json",
@@ -234,50 +245,50 @@ const languages = [
       "sublime-project",
       "sublime-completions",
     ],
-    source: "source.json",
+    source: ["source.json"],
   },
   {
     name: "jsonc",
     language: "jsonc",
     identifiers: ["jsonc"],
-    source: "source.json.comments",
+    source: ["source.json.comments"],
   },
   {
     name: "less",
     language: "less",
     identifiers: ["less"],
-    source: "source.css.less",
+    source: ["source.css.less"],
   },
   {
     name: "objc",
     language: "objc",
     identifiers: ["objectivec", "objective-c", "mm", "objc", "obj-c", "m", "h"],
-    source: "source.objc",
+    source: ["source.objc"],
   },
   {
     name: "swift",
     language: "swift",
     identifiers: ["swift"],
-    source: "source.swift",
+    source: ["source.swift"],
   },
   {
     name: "scss",
     language: "scss",
     identifiers: ["scss"],
-    source: "source.css.scss",
+    source: ["source.css.scss"],
   },
 
   {
     name: "perl6",
     language: "perl6",
     identifiers: ["perl6", "p6", "pl6", "pm6", "nqp"],
-    source: "source.perl.6",
+    source: ["source.perl.6"],
   },
   {
     name: "powershell",
     language: "powershell",
     identifiers: ["powershell", "ps1", "psm1", "psd1"],
-    source: "source.powershell",
+    source: ["source.powershell"],
   },
   {
     name: "python",
@@ -297,30 +308,30 @@ const languages = [
       "gypi",
       "\\{\\.python.+?\\}",
     ],
-    source: "source.python",
+    source: ["source.python"],
   },
   {
     name: "julia",
     language: "julia",
     identifiers: ["julia", "\\{\\.julia.+?\\}"],
-    source: "source.julia",
+    source: ["source.julia"],
   },
   {
     name: "regexp_python",
     identifiers: ["re"],
-    source: "source.regexp.python",
+    source: ["source.regexp.python"],
   },
   {
     name: "rust",
     language: "rust",
     identifiers: ["rust", "rs", "\\{\\.rust.+?\\}"],
-    source: "source.rust",
+    source: ["source.rust"],
   },
   {
     name: "scala",
     language: "scala",
     identifiers: ["scala", "sbt"],
-    source: "source.scala",
+    source: ["source.scala"],
   },
   {
     name: "shell",
@@ -338,102 +349,92 @@ const languages = [
       ".textmate_init",
       "\\{\\.bash.+?\\}",
     ],
-    source: "source.shell",
+    source: ["source.shell"],
   },
   {
     name: "ts",
     language: "typescript",
     identifiers: ["typescript", "ts"],
-    source: "source.ts",
+    source: ["source.ts"],
   },
   {
     name: "tsx",
     language: "typescriptreact",
     identifiers: ["tsx"],
-    source: "source.tsx",
+    source: ["source.tsx"],
   },
   {
     name: "csharp",
     language: "csharp",
     identifiers: ["cs", "csharp", "c#"],
-    source: "source.cs",
+    source: ["source.cs"],
   },
   {
     name: "fsharp",
     language: "fsharp",
     identifiers: ["fs", "fsharp", "f#"],
-    source: "source.fsharp",
+    source: ["source.fsharp"],
   },
   {
     name: "dart",
     language: "dart",
     identifiers: ["dart"],
-    source: "source.dart",
+    source: ["source.dart"],
   },
   {
     name: "handlebars",
     language: "handlebars",
     identifiers: ["handlebars", "hbs"],
-    source: "text.html.handlebars",
+    source: ["text.html.handlebars"],
   },
   {
     name: "markdown",
     language: "markdown",
     identifiers: ["markdown", "md"],
-    source: "text.html.markdown",
+    source: ["text.html.markdown"],
   },
-  { name: "log", language: "log", identifiers: ["log"], source: "text.log" },
+  { name: "log", language: "log", identifiers: ["log"], source: ["text.log"] },
   {
     name: "erlang",
     language: "erlang",
     identifiers: ["erlang"],
-    source: "source.erlang",
+    source: ["source.erlang"],
   },
   {
     name: "elixir",
     language: "elixir",
     identifiers: ["elixir"],
-    source: "source.elixir",
+    source: ["source.elixir"],
   },
   {
     name: "latex",
     language: "latex",
     identifiers: ["latex", "tex"],
-    source: "text.tex.latex",
+    source: ["text.tex.latex"],
   },
   {
     name: "bibtex",
     language: "bibtex",
     identifiers: ["bibtex"],
-    source: "text.bibtex",
+    source: ["text.bibtex"],
   },
 ];
 
-const fencedCodeBlockDefinition = (
-  name,
-  identifiers,
-  sourceScope,
-  language,
-  additionalContentName
-) => {
-  if (!Array.isArray(sourceScope)) {
-    sourceScope = [sourceScope];
-  }
+const fencedCodeBlockDefinition = (language: Language): string => {
+  language.language = language.language || language.name;
 
-  language = language || name;
-
-  const scopes = sourceScope
+  const scopes = language.source
     .map((scope) => `- { include: '${scope}' }`)
     .join("\n");
 
-  let contentName = `meta.embedded.block.${language}`;
-  if (additionalContentName) {
-    contentName += ` ${additionalContentName.join(" ")}`;
+  let contentName = `meta.embedded.block.${language.language}`;
+  if (language.additionalContentName) {
+    contentName += ` ${language.additionalContentName.join(" ")}`;
   }
 
-  return `fenced_code_block_${name}:
+  return `fenced_code_block_${language.name}:
   begin:
-    (^|\\G)(\\s*)(\`{3,}|~{3,})\\s*(?i:(${identifiers.join(
+    (^|\\G)(\\s*)(\`{3,}|~{3,})\\s*(?i:(${language.identifiers.join(
       "|"
     )})((\\s+|:|,|\\{|\\?)[^\`]*)?$)
   name:
@@ -455,31 +456,21 @@ ${indent(4, scopes)}
 `;
 };
 
-const indent = (count, text) => {
+const indent = (count: number, text: string): string => {
   const indent = new Array(count + 1).join("  ");
   return text.replace(/^/gm, indent);
 };
 
-const fencedCodeBlockInclude = (name) =>
+const fencedCodeBlockInclude = (name: string): string =>
   `- { include: '#fenced_code_block_${name}' }`;
 
-const fencedCodeBlockDefinitions = () =>
-  languages
-    .map((language) =>
-      fencedCodeBlockDefinition(
-        language.name,
-        language.identifiers,
-        language.source,
-        language.language,
-        language.additionalContentName
-      )
-    )
-    .join("\n");
+const fencedCodeBlockDefinitions = (): string =>
+  languages.map((language) => fencedCodeBlockDefinition(language)).join("\n");
 
-const fencedCodeBlockIncludes = () =>
+const fencedCodeBlockIncludes = (): string =>
   languages.map((language) => fencedCodeBlockInclude(language.name)).join("\n");
 
-const buildGrammar = () => {
+const buildGrammar = (): void => {
   let text = fs.readFileSync("djot.tmLanguage.base.yaml", "utf8");
   text = text.replace(
     /\s*\{\{languageIncludes\}\}/,
@@ -490,7 +481,7 @@ const buildGrammar = () => {
     "\n" + indent(1, fencedCodeBlockDefinitions())
   );
 
-  const grammar = yaml.load(text);
+  const grammar = yaml.load(text) as plist.PlistValue;
   const out = plist.build(grammar);
   fs.writeFileSync(path.join("syntax", "djot.tmLanguage"), out);
 };
