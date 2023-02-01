@@ -1,0 +1,32 @@
+= Djot.tmLanguage
+:project-url: https://github.com/sorairolake/djot.tmLanguage
+:ci-badge: {project-url}/workflows/CI/badge.svg
+:ci-url: {project-url}/actions?query=workflow%3ACI
+:djot-url: https://djot.net/
+:based-repo-url: https://github.com/microsoft/vscode-markdown-tm-grammar
+
+image:{ci-badge}[CI, link={ci-url}]
+
+TextMate grammar files for {djot-url}[djot].
+
+This is a fork of {based-repo-url}[VS Code Markdown Grammar].
+
+== Contributing
+
+The main grammar is stored in `syntax/djot.tmLanguage`.
+This file is generated from `djot.tmLanguage.base.yaml`.
+
+=== Building
+
+.To generate the main grammar:
+[source, shell]
+----
+npm install
+npm run build
+----
+
+== License
+
+The code and documentation are distributed under the terms of the _MIT License_.
+
+See link:LICENSE[] for more details.
