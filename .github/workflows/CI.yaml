@@ -42,8 +42,11 @@ jobs:
       run: |
         npm ci
         npx prettier -v
+        npx prettier-package-json -V
     - name: Check code formatted
-      run: npx prettier -c ./build.js
+      run: npx prettier -c script/*.ts
+    - name: Check `package.json` formatted
+      run: npx prettier-package-json -l
 
   lint:
     name: Lint
@@ -60,7 +63,7 @@ jobs:
         npm ci
         npx eslint -v
     - name: Check no lint warnings
-      run: npx eslint ./build.js
+      run: npx eslint
 
   type-checking:
     name: Type checking
@@ -77,4 +80,4 @@ jobs:
         npm ci
         npx tsc -v
     - name: Type checking JavaScript files
-      run: npx tsc --allowJs --noEmit --esModuleInterop ./build.js
+      run: npx tsc --noEmit
