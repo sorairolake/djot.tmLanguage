@@ -13,8 +13,8 @@ This is a fork of {based-repo-url}[VS Code Markdown Grammar].
 
 == Contributing
 
-The main grammar is stored in `syntax/djot.tmLanguage`.
-This file is generated from `djot.tmLanguage.base.yaml`.
+The main grammar is stored in `link:syntax/djot.tmLanguage[]`.
+This file is generated from `link:djot.tmLanguage.base.yaml[]`.
 
 === Building
 
